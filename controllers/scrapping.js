@@ -81,7 +81,10 @@ const sites = async (req, res) => {
       .find()
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(limitNumber);
+      .limit(limitNumber)
+      .select(
+        "title url favicon createdAt companyDetails.name companyDetails.description companyDetails.phone companyDetails.email companyDetails.address"
+      );
 
     // Send the paginated data and total count
     res.send({
@@ -93,6 +96,32 @@ const sites = async (req, res) => {
   } catch (err) {
     // Log the error and send a generic error response
     console.error("Error in sitesList:", err);
+    res.status(500).send("Something went wrong");
+  }
+};
+
+const siteDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if the ID is provided
+    if (!id) {
+      return res.status(400).send("ID is required!");
+    }
+
+    // Attempt to delete the site data by ID
+    const getSite = await site.findById(id);
+
+    // If no site data is found, return a 404 error
+    if (!getSite) {
+      return res.status(404).send("Site data not found!");
+    }
+
+    // Send a success message
+    res.send(getSite);
+  } catch (err) {
+    // Log the error and send a generic error response
+    console.error("Error in deleteSite:", err);
     res.status(500).send("Something went wrong");
   }
 };
@@ -123,4 +152,4 @@ const deleteSite = async (req, res) => {
   }
 };
 
-module.exports = { scrapSite, sites, deleteSite };
+module.exports = { scrapSite, sites, deleteSite, siteDetails };

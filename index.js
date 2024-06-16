@@ -1,12 +1,9 @@
-
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const routes = require("./routes");
 const connectDB = require("./config/db");
-const { getHtml } = require("./services/puppeter");
-const { parseHtml } = require("./services/parseHtml");
 const app = express();
 
 connectDB();

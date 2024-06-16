@@ -5,6 +5,7 @@ const SiteSchema = new mongoose.Schema(
     url: { type: String, required: true, unique: true },
     title: { type: String, required: true },
     metaDescription: { type: String, required: true },
+    favicon: { type: String, default: "No favicon found" },
     companyDetails: {
       name: { type: String, default: "No name found" },
       description: { type: String, default: "No description found" },
@@ -18,7 +19,6 @@ const SiteSchema = new mongoose.Schema(
         linkedin: { type: String, default: null },
       },
       address: { type: String, default: null },
-      favicon: { type: String, default: "No favicon found" },
       screenshot: { type: String, default: null },
     },
   },

@@ -25,9 +25,32 @@ The Scrapping API is an open API for scraping a site and retrieving basic inform
 **Method:** GET  
 **URL:** `http://localhost:4000/open/api/sites`
 
-This `README.md` file provides a clear and concise overview of the API endpoints, their methods, URLs, and any required request bodies.
+### 4. Get specific site details
+**Method:** GET  
+**URL:** `http://localhost:4000/open/api/site_details/:id`
 
+### 5. Download Csv of sites
+**Method:** GET  
+**URL:** `http://localhost:4000/open/api/download_csv`
 
+This `Section` provides a clear and concise overview of the API endpoints, their methods, URLs, and any required request bodies.
 
+## Starting the Express Server
 
+To start the Express server, follow these steps:
 
+1. **Install dependencies:**
+   ```bash
+   npm install
+
+2. **Start the server:**
+   ```bash
+   npm run dev
+
+## Troubleshooting
+
+**Puppeteer Issues**
+
+If Puppeteer doesn't find Chrome, you might need to install Chromium. You can do this by running the following command:
+   ```bash
+   npx puppeteer browsers install chrome
